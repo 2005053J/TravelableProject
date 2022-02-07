@@ -1,0 +1,71 @@
+﻿@page "/hotels/"
+@inject HttpClient _client 
+@inject IJSRuntime js
+@attribute [Authorize]
+
+<h3 class="card-title">Hotels</h3>
+
+@if (Hotels == null)
+            {
+                <div class="alert alert-info">Loading Hotels...</div>
+}
+else
+            {
+                <table class="table table-responsive">
+                    <thead>
+                        <tr>
+                            <th>Hotel Name</th>
+                            <th>Country</th>
+                            <th>Hotel Address</th>
+                            <th>Room</th>
+                            <th>Payment</th>
+                            <th>Duration</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var hotel in Hotels)
+                {
+                        <tr>
+                            <td>@hotel.HotelName</td>
+                            <td>@hotel.Country</td>
+                            <td>@hotel.HotelAddress</td>
+                            <td>@hotel.Room</td>
+                            <td>@hotel.Payment</td>
+                            <td>@hotel.Duration</td>
+                            <td>
+                                <a href="/hotels/view/@hotel.Id" class="btn btn-primary">
+                                    <span class="oi oi-book"></span>
+                                </a>
+                                <a href="/hotels/edit/@hotel.Id" class="btn btn-warning">
+                                    <span class="oi oi-pencil"></span>
+                                </a>
+                                <button class="btn btn-danger" @onclick="@(()=>Delete(hotel.Id))">
+                                    <span class="oi oi-delete"></span>
+                                </button>
+                            </td>
+                        </tr>
+                }
+                    </tbody>
+                </table>
+            }
+
+@code {
+    private List<Hotel> Hotels;
+
+    protected async override Task OnInitializedAsync()
+    {
+        Hotels = await _client.GetFromJsonAsync<List<Hotel>>($"{Endpoints.HotelsEndpoint}");
+    }
+
+    async Task Delete(int hotelId)
+    {
+        var hotel = Hotels.First(q => q.Id == hotelId);
+        var confirm = await js.InvokeAsync<bool>("confirm", $"Do you want to delete {hotel.HotelName}?");
+        if (confirm)
+        {
+            await _client.DeleteAsync($"{Endpoints.HotelsEndpoint}/{hotelId}");
+            await OnInitializedAsync();
+        }
+    }
+}

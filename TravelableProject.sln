@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31911.196
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TravelableProject.Server", "TravelableProject\Server\TravelableProject.Server.csproj", "{D9439D61-6ED3-4E54-93F0-89E6FB94B2F1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TravelableProject.Server", "TravelableProject\Server\TravelableProject.Server.csproj", "{D9439D61-6ED3-4E54-93F0-89E6FB94B2F1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TravelableProject.Client", "TravelableProject\Client\TravelableProject.Client.csproj", "{7372271D-B998-4E04-B005-DDDEE8EEDD96}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TravelableProject.Client", "TravelableProject\Client\TravelableProject.Client.csproj", "{7372271D-B998-4E04-B005-DDDEE8EEDD96}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TravelableProject.Shared", "TravelableProject\Shared\TravelableProject.Shared.csproj", "{5E238996-7C14-4473-A50E-69A0ACA342F9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TravelableProject.Shared", "TravelableProject\Shared\TravelableProject.Shared.csproj", "{5E238996-7C14-4473-A50E-69A0ACA342F9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
