@@ -9,7 +9,7 @@ using TravelableProject.Shared;
 
 namespace TravelableProject.Server.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [ApiController]
     [Route("[controller]")]
     public class WeatherForecastController : ControllerBase

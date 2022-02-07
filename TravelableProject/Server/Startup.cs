@@ -9,7 +9,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.Linq;
 using TravelableProject.Server.Data;
+using TravelableProject.Server.IRepository;
 using TravelableProject.Server.Models;
+using TravelableProject.Server.Repository;
 
 namespace TravelableProject.Server
 {
@@ -43,6 +45,8 @@ namespace TravelableProject.Server
 
             services.AddControllersWithViews();
             services.AddRazorPages();
+
+            services.AddTransient<IUnitOfWork, UnitOfWork>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
