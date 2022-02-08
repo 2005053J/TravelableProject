@@ -57,15 +57,6 @@ namespace TravelableProject.Server.Configurations.Entities
                     DateUpdated = DateTime.Now,
                     CreatedBy = "System",
                     UpdatedBy = "System"
-                },
-                new Payment
-                {
-                    Id = 6,
-                    Method = "PayPal",
-                    DateCreated = DateTime.Now,
-                    DateUpdated = DateTime.Now,
-                    CreatedBy = "System",
-                    UpdatedBy = "System"
                 }
                 );
         }

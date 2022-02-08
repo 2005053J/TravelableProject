@@ -1,0 +1,47 @@
+﻿@page "/durations/create/"
+@inject HttpClient _client
+@inject NavigationManager _navManager
+
+<h3 class="card-title">Create New Durations</h3>
+<hr />
+<br />
+
+<EditForm Model="@duration" OnValidSubmit="CreateDuration">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="form-group">
+        <label>StayTime: </label>
+        <div>
+            <InputText @bind-Value="@duration.StayTime" class="form-control" />
+            <ValidationMessage For="@(() => duration.StayTime)" />
+        </div>
+    </div>
+
+<button type="submit" class="btn btn-success btn-block">
+    Create Duration
+</button>
+<TravelableProject.Client.Components.BackToList Target="durations" />
+</EditForm>
+
+@code {
+    Duration duration = new Duration();
+
+    private IList<Payment> Payments;
+    private IList<Duration> Durations;
+    private IList<Room> Rooms;
+
+    protected async override Task OnInitializedAsync()
+    {
+        Durations = await _client.GetFromJsonAsync<List<Duration>>($"{Endpoints.DurationsEndpoint}");
+        Payments = await _client.GetFromJsonAsync<List<Payment>>($"{Endpoints.PaymentsEndpoint}");
+        Rooms = await _client.GetFromJsonAsync<List<Room>>($"{Endpoints.RoomsEndpoint}");
+    }
+
+    private async Task CreateDuration()
+    {
+        await _client.PostAsJsonAsync(Endpoints.DurationsEndpoint, duration);
+        _navManager.NavigateTo("/durations/");
+    }
+
+}

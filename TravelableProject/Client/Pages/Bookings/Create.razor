@@ -1,0 +1,59 @@
+﻿@page "/bookings/create/"
+@inject HttpClient _client
+@inject NavigationManager _navManager
+
+<h3 class="card-title">Create New Bookings</h3>
+<hr />
+<br />
+
+<EditForm Model="@booking" OnValidSubmit="CreateBooking">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="form-group">
+        <label>Customer: </label>
+        <div>
+            <InputSelect @bind-Value="booking.CustomerId" class="form-control">
+                <option value="">--Select Customer--</option>
+                @if (Customers != null)
+                {
+                    foreach (var customer in Customers)
+                    {
+                        <option value="@customer.Id">@customer.GuestName</option>
+                    }
+                }
+            </InputSelect>
+            <ValidationMessage For="@(() => booking.CustomerId)" />
+        </div>
+    </div>
+
+
+    <button type="submit" class="btn btn-success btn-block">
+        Create Booking
+    </button>
+    <TravelableProject.Client.Components.BackToList Target="bookings" />
+</EditForm>
+
+@code {
+    Booking booking = new Booking();
+
+    private IList<Payment> Payments;
+    private IList<Room> Rooms;
+    private IList<Duration> Durations;
+    private IList<Customer> Customers;
+
+    protected async override Task OnInitializedAsync()
+    {
+        Rooms = await _client.GetFromJsonAsync<List<Room>>($"{Endpoints.RoomsEndpoint}");
+        Payments = await _client.GetFromJsonAsync<List<Payment>>($"{Endpoints.PaymentsEndpoint}");
+        Durations = await _client.GetFromJsonAsync<List<Duration>>($"{Endpoints.DurationsEndpoint}");
+        Customers = await _client.GetFromJsonAsync<List<Customer>>($"{Endpoints.RoomsEndpoint}");
+    }
+
+    private async Task CreateBooking()
+    {
+        await _client.PostAsJsonAsync(Endpoints.BookingsEndpoint, booking);
+        _navManager.NavigateTo("/bookings/");
+    }
+
+}

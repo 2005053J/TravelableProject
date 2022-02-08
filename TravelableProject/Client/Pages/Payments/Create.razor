@@ -1,0 +1,47 @@
+﻿@page "/payments/create/"
+@inject HttpClient _client
+@inject NavigationManager _navManager
+
+<h3 class="card-title">Create New Payments</h3>
+<hr />
+<br />
+
+<EditForm Model="@payment" OnValidSubmit="CreatePayment">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="form-group">
+        <label>Type: </label>
+        <div>
+            <InputText @bind-Value="@payment.Method" class="form-control" />
+            <ValidationMessage For="@(() => payment.Method)" />
+        </div>
+    </div>
+
+<button type="submit" class="btn btn-success btn-block">
+    Create Payment
+</button>
+<TravelableProject.Client.Components.BackToList Target="payments" />
+</EditForm>
+
+@code {
+    Payment payment = new Payment();
+
+    private IList<Room> Rooms;
+    private IList<Payment> Payments;
+    private IList<Duration> Durations;
+
+    protected async override Task OnInitializedAsync()
+    {
+        Rooms = await _client.GetFromJsonAsync<List<Room>>($"{Endpoints.RoomsEndpoint}");
+        Payments = await _client.GetFromJsonAsync<List<Payment>>($"{Endpoints.PaymentsEndpoint}");
+        Durations = await _client.GetFromJsonAsync<List<Duration>>($"{Endpoints.DurationsEndpoint}");
+    }
+
+    private async Task CreatePayment()
+    {
+        await _client.PostAsJsonAsync(Endpoints.PaymentsEndpoint, payment);
+        _navManager.NavigateTo("/payments/");
+    }
+
+}

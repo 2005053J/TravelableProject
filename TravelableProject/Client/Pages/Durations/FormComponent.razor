@@ -1,0 +1,23 @@
+﻿<EditForm Model="@duration" OnValidSubmit="@OnValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="form-group">
+        <label>StayTime: </label>
+        <div>
+            <InputText @bind-Value="@duration.StayTime" class="form-control" />
+            <ValidationMessage For="@(() => duration.StayTime)" />
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-success btn-block">
+        @ButtonText
+    </button>
+    <TravelableProject.Client.Components.BackToList Target="durations" />
+</EditForm>
+
+@code {
+    [Parameter] public Duration duration { get; set; }
+    [Parameter] public string ButtonText { get; set; } = "Save";
+    [Parameter] public EventCallback OnValidSubmit { get; set; }
+}

@@ -1,44 +1,52 @@
 ﻿@page "/durations/"
-@inject HttpClient _client 
+@inject HttpClient _client
 @inject IJSRuntime js
 @attribute [Authorize]
 
 <h3 class="card-title">Hotel Durations</h3>
+<br />
+
+<a href="/durations/create" class="btn btn-secondary">
+    <span class="oi oi-plus"></span>
+    Create New Duration
+</a>
+<br />
+<br />
 
 @if (Durations == null)
-            {
-                <div class="alert alert-info">Loading Durations...</div>
+{
+    <div class="alert alert-info">Loading Durations...</div>
 }
 else
+{
+    <table class="table table-responsive">
+        <thead>
+            <tr>
+                <th>StayTime</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var duration in Durations)
             {
-                <table class="table table-responsive">
-                    <thead>
-                        <tr>
-                            <th>StayTime</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var duration in Durations)
-                {
-                    <tr>
-                        <td>@duration.StayTime</td>
-                        <td>
-                            <a href="/durations/view/@duration.Id" class="btn btn-primary">
-                                <span class="oi oi-book"></span>
-                            </a>
-                            <a href="/durations/edit/@duration.Id" class="btn btn-warning">
-                                <span class="oi oi-pencil"></span>
-                            </a>
-                            <button class="btn btn-danger" @onclick="@(()=>Delete(duration.Id))">
-                                <span class="oi oi-delete"></span>
-                            </button>
-                        </td>
-                    </tr>
-                }
-                    </tbody>
-                </table>
+                <tr>
+                    <td>@duration.StayTime</td>
+                    <td>
+                        <a href="/durations/view/@duration.Id" class="btn btn-primary">
+                            <span class="oi oi-book"></span>
+                        </a>
+                        <a href="/durations/edit/@duration.Id" class="btn btn-warning">
+                            <span class="oi oi-pencil"></span>
+                        </a>
+                        <button class="btn btn-danger" @onclick="@(()=>Delete(duration.Id))">
+                            <span class="oi oi-delete"></span>
+                        </button>
+                    </td>
+                </tr>
             }
+        </tbody>
+    </table>
+}
 
 @code {
     private List<Duration> Durations;

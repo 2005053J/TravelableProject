@@ -1,0 +1,23 @@
+﻿@page "/rooms/edit/{id:int}"
+@inject HttpClient _client
+@inject NavigationManager _navManager  
+
+<h3>Edit Room</h3>
+
+<FormComponent ButtonText="Update" OnValidSubmit="EditRoom" room="room" />
+
+@code {
+        [Parameter] public int id { get; set; }
+        Room room = new Room();
+
+    protected async override Task OnParametersSetAsync()
+    {
+        room = await _client.GetFromJsonAsync<Room>($"{Endpoints.RoomsEndpoint}/{id}");
+    }
+
+    async Task EditRoom()
+    {
+        await _client.PutAsJsonAsync($"{Endpoints.RoomsEndpoint}/{id}", room);
+        _navManager.NavigateTo("/rooms/");
+    }
+}

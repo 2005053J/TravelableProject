@@ -1,0 +1,23 @@
+﻿<EditForm Model="@payment" OnValidSubmit="@OnValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="form-group">
+        <label>Method: </label>
+        <div>
+            <InputText @bind-Value="@payment.Method" class="form-control" />
+            <ValidationMessage For="@(() => payment.Method)" />
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-success btn-block">
+        @ButtonText
+    </button>
+    <TravelableProject.Client.Components.BackToList Target="payments" />
+</EditForm>
+
+@code {
+    [Parameter] public Payment payment { get; set; }
+    [Parameter] public string ButtonText { get; set; } = "Save";
+    [Parameter] public EventCallback OnValidSubmit { get; set; }
+}

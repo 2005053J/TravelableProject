@@ -1,0 +1,23 @@
+﻿@page "/durations/edit/{id:int}"
+@inject HttpClient _client
+@inject NavigationManager _navManager  
+
+<h3>Edit Duration</h3>
+
+<FormComponent ButtonText="Update" OnValidSubmit="EditDuration" duration="duration" />
+
+@code {
+        [Parameter] public int id { get; set; }
+        Duration duration = new Duration();
+
+    protected async override Task OnParametersSetAsync()
+    {
+        duration = await _client.GetFromJsonAsync<Duration>($"{Endpoints.DurationsEndpoint}/{id}");
+    }
+
+    async Task EditDuration()
+    {
+        await _client.PutAsJsonAsync($"{Endpoints.DurationsEndpoint}/{id}", duration);
+        _navManager.NavigateTo("/durations/");
+    }
+}

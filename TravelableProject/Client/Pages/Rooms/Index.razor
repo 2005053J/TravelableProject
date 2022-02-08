@@ -1,44 +1,52 @@
 ﻿@page "/rooms/"
-@inject HttpClient _client 
+@inject HttpClient _client
 @inject IJSRuntime js
 @attribute [Authorize]
 
 <h3 class="card-title">Hotel Rooms</h3>
+<br />
+
+<a href="/rooms/create" class="btn btn-secondary">
+    <span class="oi oi-plus"></span>
+    Create New Room
+</a>
+<br />
+<br />
 
 @if (Rooms == null)
-            {
-                <div class="alert alert-info">Loading Rooms...</div>
+{
+    <div class="alert alert-info">Loading Rooms...</div>
 }
 else
+{
+    <table class="table table-responsive">
+        <thead>
+            <tr>
+                <th>Type</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var room in Rooms)
             {
-                <table class="table table-responsive">
-                    <thead>
-                        <tr>
-                            <th>Type</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var room in Rooms)
-                {
-                    <tr>
-                        <td>@room.Type</td>
-                        <td>
-                            <a href="/rooms/view/@room.Id" class="btn btn-primary">
-                                <span class="oi oi-book"></span>
-                            </a>
-                            <a href="/rooms/edit/@room.Id" class="btn btn-warning">
-                                <span class="oi oi-pencil"></span>
-                            </a>
-                            <button class="btn btn-danger" @onclick="@(()=>Delete(room.Id))">
-                                <span class="oi oi-delete"></span>
-                            </button>
-                        </td>
-                    </tr>
-                }
-                    </tbody>
-                </table>
+                <tr>
+                    <td>@room.Type</td>
+                    <td>
+                        <a href="/rooms/view/@room.Id" class="btn btn-primary">
+                            <span class="oi oi-book"></span>
+                        </a>
+                        <a href="/rooms/edit/@room.Id" class="btn btn-warning">
+                            <span class="oi oi-pencil"></span>
+                        </a>
+                        <button class="btn btn-danger" @onclick="@(()=>Delete(room.Id))">
+                            <span class="oi oi-delete"></span>
+                        </button>
+                    </td>
+                </tr>
             }
+        </tbody>
+    </table>
+}
 
 @code {
     private List<Room> Rooms;

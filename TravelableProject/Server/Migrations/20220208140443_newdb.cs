@@ -341,27 +341,27 @@ namespace TravelableProject.Server.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "489e4d75-e0dc-4ac8-ab15-72834102fc89", "2c5bfc37-5e34-42ab-9f55-f1984188ec97", "Administrator", "ADMINISTRATOR" },
-                    { "dd4389e0-5019-466c-930e-8f60f453bc91", "a5806ef8-0930-4a14-b723-59c87452b91f", "User", "USER" }
+                    { "489e4d75-e0dc-4ac8-ab15-72834102fc89", "e0fb48bd-cec2-417c-83bb-622ff6f6af25", "Administrator", "ADMINISTRATOR" },
+                    { "dd4389e0-5019-466c-930e-8f60f453bc91", "a50d9de8-714c-406f-9aad-a5166d86b9b1", "User", "USER" }
                 });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "18a0ae93-da75-43fd-ba01-7b4f95456194", 0, "5831069d-8685-45d1-872f-cefef19cf156", "admin@localhost.com", false, "Admin", "User", false, null, "ADMIN@LOCALHOST.COM", "ADMIN", "AQAAAAEAACcQAAAAEFicEnHyldSLsrW2v4Tk7je4gS2Zb8MREUFBlOXmmT8nGxCAEale4FU1yhTl+mUmrw==", null, false, "c96e59c9-4f90-420f-8ed9-74634b8789d9", false, "Admin" });
+                values: new object[] { "18a0ae93-da75-43fd-ba01-7b4f95456194", 0, "976d1a49-0d72-4820-b758-27fc033f4c4b", "admin@localhost.com", false, "Admin", "User", false, null, "ADMIN@LOCALHOST.COM", "ADMIN", "AQAAAAEAACcQAAAAEI7DoM/A0KX+z69m29ybHa8mN7hHuhQJaeYfPb0Om3aw6oiIz1G1yDsnQw3HiZggng==", null, false, "2feeb5b0-78ac-4143-89d1-4114a7d4c1f4", false, "Admin" });
 
             migrationBuilder.InsertData(
                 table: "Durations",
                 columns: new[] { "Id", "CreatedBy", "DateCreated", "DateUpdated", "StayTime", "UpdatedBy" },
                 values: new object[,]
                 {
-                    { 1, "System", new DateTime(2022, 2, 7, 22, 43, 9, 101, DateTimeKind.Local).AddTicks(3129), new DateTime(2022, 2, 7, 22, 43, 9, 101, DateTimeKind.Local).AddTicks(3142), "1 Day", "System" },
-                    { 2, "System", new DateTime(2022, 2, 7, 22, 43, 9, 101, DateTimeKind.Local).AddTicks(3149), new DateTime(2022, 2, 7, 22, 43, 9, 101, DateTimeKind.Local).AddTicks(3151), "2 Days", "System" },
-                    { 3, "System", new DateTime(2022, 2, 7, 22, 43, 9, 101, DateTimeKind.Local).AddTicks(3154), new DateTime(2022, 2, 7, 22, 43, 9, 101, DateTimeKind.Local).AddTicks(3157), "3 Days", "System" },
-                    { 4, "System", new DateTime(2022, 2, 7, 22, 43, 9, 101, DateTimeKind.Local).AddTicks(3160), new DateTime(2022, 2, 7, 22, 43, 9, 101, DateTimeKind.Local).AddTicks(3163), "4 Days", "System" },
-                    { 5, "System", new DateTime(2022, 2, 7, 22, 43, 9, 101, DateTimeKind.Local).AddTicks(3167), new DateTime(2022, 2, 7, 22, 43, 9, 101, DateTimeKind.Local).AddTicks(3169), "5 Days", "System" },
-                    { 6, "System", new DateTime(2022, 2, 7, 22, 43, 9, 101, DateTimeKind.Local).AddTicks(3170), new DateTime(2022, 2, 7, 22, 43, 9, 101, DateTimeKind.Local).AddTicks(3174), "6 Days", "System" },
-                    { 7, "System", new DateTime(2022, 2, 7, 22, 43, 9, 101, DateTimeKind.Local).AddTicks(3177), new DateTime(2022, 2, 7, 22, 43, 9, 101, DateTimeKind.Local).AddTicks(3179), "1 Week", "System" }
+                    { 6, "System", new DateTime(2022, 2, 8, 22, 4, 42, 376, DateTimeKind.Local).AddTicks(3059), new DateTime(2022, 2, 8, 22, 4, 42, 376, DateTimeKind.Local).AddTicks(3063), "6 Days", "System" },
+                    { 5, "System", new DateTime(2022, 2, 8, 22, 4, 42, 376, DateTimeKind.Local).AddTicks(3050), new DateTime(2022, 2, 8, 22, 4, 42, 376, DateTimeKind.Local).AddTicks(3054), "5 Days", "System" },
+                    { 4, "System", new DateTime(2022, 2, 8, 22, 4, 42, 376, DateTimeKind.Local).AddTicks(3043), new DateTime(2022, 2, 8, 22, 4, 42, 376, DateTimeKind.Local).AddTicks(3046), "4 Days", "System" },
+                    { 7, "System", new DateTime(2022, 2, 8, 22, 4, 42, 376, DateTimeKind.Local).AddTicks(3067), new DateTime(2022, 2, 8, 22, 4, 42, 376, DateTimeKind.Local).AddTicks(3070), "1 Week", "System" },
+                    { 2, "System", new DateTime(2022, 2, 8, 22, 4, 42, 376, DateTimeKind.Local).AddTicks(3027), new DateTime(2022, 2, 8, 22, 4, 42, 376, DateTimeKind.Local).AddTicks(3030), "2 Days", "System" },
+                    { 1, "System", new DateTime(2022, 2, 8, 22, 4, 42, 376, DateTimeKind.Local).AddTicks(2979), new DateTime(2022, 2, 8, 22, 4, 42, 376, DateTimeKind.Local).AddTicks(3017), "1 Day", "System" },
+                    { 3, "System", new DateTime(2022, 2, 8, 22, 4, 42, 376, DateTimeKind.Local).AddTicks(3036), new DateTime(2022, 2, 8, 22, 4, 42, 376, DateTimeKind.Local).AddTicks(3039), "3 Days", "System" }
                 });
 
             migrationBuilder.InsertData(
@@ -369,12 +369,11 @@ namespace TravelableProject.Server.Migrations
                 columns: new[] { "Id", "CreatedBy", "DateCreated", "DateUpdated", "Method", "UpdatedBy" },
                 values: new object[,]
                 {
-                    { 6, "System", new DateTime(2022, 2, 7, 22, 43, 9, 100, DateTimeKind.Local).AddTicks(2605), new DateTime(2022, 2, 7, 22, 43, 9, 100, DateTimeKind.Local).AddTicks(2607), "PayPal", "System" },
-                    { 5, "System", new DateTime(2022, 2, 7, 22, 43, 9, 100, DateTimeKind.Local).AddTicks(2602), new DateTime(2022, 2, 7, 22, 43, 9, 100, DateTimeKind.Local).AddTicks(2603), "Bank Transfer", "System" },
-                    { 4, "System", new DateTime(2022, 2, 7, 22, 43, 9, 100, DateTimeKind.Local).AddTicks(2599), new DateTime(2022, 2, 7, 22, 43, 9, 100, DateTimeKind.Local).AddTicks(2600), "Direct Billing", "System" },
-                    { 1, "System", new DateTime(2022, 2, 7, 22, 43, 9, 100, DateTimeKind.Local).AddTicks(2571), new DateTime(2022, 2, 7, 22, 43, 9, 100, DateTimeKind.Local).AddTicks(2588), "Credit Card", "System" },
-                    { 2, "System", new DateTime(2022, 2, 7, 22, 43, 9, 100, DateTimeKind.Local).AddTicks(2592), new DateTime(2022, 2, 7, 22, 43, 9, 100, DateTimeKind.Local).AddTicks(2593), "Cash", "System" },
-                    { 3, "System", new DateTime(2022, 2, 7, 22, 43, 9, 100, DateTimeKind.Local).AddTicks(2595), new DateTime(2022, 2, 7, 22, 43, 9, 100, DateTimeKind.Local).AddTicks(2596), "Personal Check", "System" }
+                    { 1, "System", new DateTime(2022, 2, 8, 22, 4, 42, 374, DateTimeKind.Local).AddTicks(8222), new DateTime(2022, 2, 8, 22, 4, 42, 374, DateTimeKind.Local).AddTicks(8261), "Credit Card", "System" },
+                    { 2, "System", new DateTime(2022, 2, 8, 22, 4, 42, 374, DateTimeKind.Local).AddTicks(8271), new DateTime(2022, 2, 8, 22, 4, 42, 374, DateTimeKind.Local).AddTicks(8274), "Cash", "System" },
+                    { 3, "System", new DateTime(2022, 2, 8, 22, 4, 42, 374, DateTimeKind.Local).AddTicks(8277), new DateTime(2022, 2, 8, 22, 4, 42, 374, DateTimeKind.Local).AddTicks(8280), "Personal Check", "System" },
+                    { 4, "System", new DateTime(2022, 2, 8, 22, 4, 42, 374, DateTimeKind.Local).AddTicks(8283), new DateTime(2022, 2, 8, 22, 4, 42, 374, DateTimeKind.Local).AddTicks(8285), "Direct Billing", "System" },
+                    { 5, "System", new DateTime(2022, 2, 8, 22, 4, 42, 374, DateTimeKind.Local).AddTicks(8288), new DateTime(2022, 2, 8, 22, 4, 42, 374, DateTimeKind.Local).AddTicks(8291), "Bank Transfer", "System" }
                 });
 
             migrationBuilder.InsertData(
@@ -382,11 +381,11 @@ namespace TravelableProject.Server.Migrations
                 columns: new[] { "Id", "CreatedBy", "DateCreated", "DateUpdated", "Type", "UpdatedBy" },
                 values: new object[,]
                 {
-                    { 4, "System", new DateTime(2022, 2, 7, 22, 43, 9, 98, DateTimeKind.Local).AddTicks(708), new DateTime(2022, 2, 7, 22, 43, 9, 98, DateTimeKind.Local).AddTicks(709), "King", "System" },
-                    { 1, "System", new DateTime(2022, 2, 7, 22, 43, 9, 96, DateTimeKind.Local).AddTicks(7878), new DateTime(2022, 2, 7, 22, 43, 9, 97, DateTimeKind.Local).AddTicks(9314), "Single", "System" },
-                    { 2, "System", new DateTime(2022, 2, 7, 22, 43, 9, 98, DateTimeKind.Local).AddTicks(697), new DateTime(2022, 2, 7, 22, 43, 9, 98, DateTimeKind.Local).AddTicks(703), "Double", "System" },
-                    { 3, "System", new DateTime(2022, 2, 7, 22, 43, 9, 98, DateTimeKind.Local).AddTicks(705), new DateTime(2022, 2, 7, 22, 43, 9, 98, DateTimeKind.Local).AddTicks(706), "Queen", "System" },
-                    { 5, "System", new DateTime(2022, 2, 7, 22, 43, 9, 98, DateTimeKind.Local).AddTicks(710), new DateTime(2022, 2, 7, 22, 43, 9, 98, DateTimeKind.Local).AddTicks(711), "Smoking", "System" }
+                    { 4, "System", new DateTime(2022, 2, 8, 22, 4, 42, 369, DateTimeKind.Local).AddTicks(9643), new DateTime(2022, 2, 8, 22, 4, 42, 369, DateTimeKind.Local).AddTicks(9646), "King", "System" },
+                    { 1, "System", new DateTime(2022, 2, 8, 22, 4, 42, 367, DateTimeKind.Local).AddTicks(7238), new DateTime(2022, 2, 8, 22, 4, 42, 369, DateTimeKind.Local).AddTicks(7052), "Single", "System" },
+                    { 2, "System", new DateTime(2022, 2, 8, 22, 4, 42, 369, DateTimeKind.Local).AddTicks(9620), new DateTime(2022, 2, 8, 22, 4, 42, 369, DateTimeKind.Local).AddTicks(9631), "Double", "System" },
+                    { 3, "System", new DateTime(2022, 2, 8, 22, 4, 42, 369, DateTimeKind.Local).AddTicks(9636), new DateTime(2022, 2, 8, 22, 4, 42, 369, DateTimeKind.Local).AddTicks(9639), "Queen", "System" },
+                    { 5, "System", new DateTime(2022, 2, 8, 22, 4, 42, 369, DateTimeKind.Local).AddTicks(9650), new DateTime(2022, 2, 8, 22, 4, 42, 369, DateTimeKind.Local).AddTicks(9652), "Smoking", "System" }
                 });
 
             migrationBuilder.InsertData(

@@ -21,7 +21,8 @@ namespace TravelableProject.Server.Configurations.Entities
                 UserName = "Admin",
                 NormalizedUserName = "ADMIN",
                 PasswordHash = hasher.HashPassword(null, "P@ssword1")
-            });
+            }
+            );
         }
     }
 }

@@ -1,0 +1,23 @@
+﻿<EditForm Model="@room" OnValidSubmit="@OnValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="form-group">
+        <label>Type: </label>
+        <div>
+            <InputText @bind-Value="@room.Type" class="form-control" />
+            <ValidationMessage For="@(() => room.Type)" />
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-success btn-block">
+        @ButtonText
+    </button>
+    <TravelableProject.Client.Components.BackToList Target="rooms" />
+</EditForm>
+
+@code {
+    [Parameter] public Room room { get; set; }
+    [Parameter] public string ButtonText { get; set; } = "Save";
+    [Parameter] public EventCallback OnValidSubmit { get; set; }
+}

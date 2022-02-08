@@ -1,0 +1,47 @@
+﻿<EditForm Model="@customer" OnValidSubmit="@OnValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="form-group">
+        <label>Name: </label>
+        <div>
+            <InputText @bind-Value="@customer.GuestName" class="form-control" />
+            <ValidationMessage For="@(() => customer.GuestName)" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Address: </label>
+        <div>
+            <InputText @bind-Value="@customer.GuestAddress" class="form-control" />
+            <ValidationMessage For="@(() => customer.GuestAddress)" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Contact Number: </label>
+        <div>
+            <InputText @bind-Value="@customer.ContactNumber" class="form-control" />
+            <ValidationMessage For="@(() => customer.ContactNumber)" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Contact Email: </label>
+        <div>
+            <InputText @bind-Value="@customer.EmailAddress" class="form-control" />
+            <ValidationMessage For="@(() => customer.EmailAddress)" />
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-success btn-block">
+        @ButtonText
+    </button>
+    <TravelableProject.Client.Components.BackToList Target="customers" />
+</EditForm>
+
+@code {
+    [Parameter] public Customer customer { get; set; }
+    [Parameter] public string ButtonText { get; set; } = "Save";
+    [Parameter] public EventCallback OnValidSubmit { get; set; }
+}

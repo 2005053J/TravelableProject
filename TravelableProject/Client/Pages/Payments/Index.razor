@@ -1,44 +1,52 @@
 ﻿@page "/payments/"
-@inject HttpClient _client 
+@inject HttpClient _client
 @inject IJSRuntime js
 @attribute [Authorize]
 
 <h3 class="card-title">Hotel Payments</h3>
+<br />
+
+<a href="/payments/create" class="btn btn-secondary">
+    <span class="oi oi-plus"></span>
+    Create New Payment
+</a>
+<br />
+<br />
 
 @if (Payments == null)
-            {
-                <div class="alert alert-info">Loading Payments...</div>
+{
+    <div class="alert alert-info">Loading Payments...</div>
 }
 else
+{
+    <table class="table table-responsive">
+        <thead>
+            <tr>
+                <th>Method</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var payment in Payments)
             {
-                <table class="table table-responsive">
-                    <thead>
-                        <tr>
-                            <th>Method</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var payment in Payments)
-                {
-                    <tr>
-                        <td>@payment.Method</td>
-                        <td>
-                            <a href="/payments/view/@payment.Id" class="btn btn-primary">
-                                <span class="oi oi-book"></span>
-                            </a>
-                            <a href="/payments/edit/@payment.Id" class="btn btn-warning">
-                                <span class="oi oi-pencil"></span>
-                            </a>
-                            <button class="btn btn-danger" @onclick="@(()=>Delete(payment.Id))">
-                                <span class="oi oi-delete"></span>
-                            </button>
-                        </td>
-                    </tr>
-                }
-                    </tbody>
-                </table>
+                <tr>
+                    <td>@payment.Method</td>
+                    <td>
+                        <a href="/payments/view/@payment.Id" class="btn btn-primary">
+                            <span class="oi oi-book"></span>
+                        </a>
+                        <a href="/payments/edit/@payment.Id" class="btn btn-warning">
+                            <span class="oi oi-pencil"></span>
+                        </a>
+                        <button class="btn btn-danger" @onclick="@(()=>Delete(payment.Id))">
+                            <span class="oi oi-delete"></span>
+                        </button>
+                    </td>
+                </tr>
             }
+        </tbody>
+    </table>
+}
 
 @code {
     private List<Payment> Payments;
