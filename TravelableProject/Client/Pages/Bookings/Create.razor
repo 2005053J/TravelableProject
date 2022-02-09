@@ -123,7 +123,7 @@
         Rooms = await _client.GetFromJsonAsync<List<Room>>($"{Endpoints.RoomsEndpoint}");
         Payments = await _client.GetFromJsonAsync<List<Payment>>($"{Endpoints.PaymentsEndpoint}");
         Durations = await _client.GetFromJsonAsync<List<Duration>>($"{Endpoints.DurationsEndpoint}");
-        Customers = await _client.GetFromJsonAsync<List<Customer>>($"{Endpoints.RoomsEndpoint}");
+        Customers = await _client.GetFromJsonAsync<List<Customer>>($"{Endpoints.CustomersEndpoint}");
         Hotels = await _client.GetFromJsonAsync<List<Hotel>>($"{Endpoints.HotelsEndpoint}");
     }
 
