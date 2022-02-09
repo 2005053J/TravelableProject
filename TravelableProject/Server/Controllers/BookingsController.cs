@@ -32,7 +32,7 @@ namespace TravelableProject.Server.Controllers
         public async Task<IActionResult> GetBookings()
         {
             //return await _context.Bookings.ToListAsync();
-            var bookings = await _unitOfWork.Bookings.GetAll(includes: q => q.Include(x => x.Hotel).Include(x => x.Customer));
+            var bookings = await _unitOfWork.Bookings.GetAll(includes: q => q.Include(x => x.Hotel).Include(x => x.Customer).Include(x => x.Room).Include(x => x.Duration).Include(x => x.Payment));
             return Ok(bookings);
         }
 

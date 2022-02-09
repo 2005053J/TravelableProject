@@ -23,9 +23,10 @@ else
         <thead>
             <tr>
                 <th>Booking Id</th>
-                <th>Hotel Id</th>
-                <th>Customer Id</th>
-                <th>Date</th>
+                <th>Hotel Name</th>
+                <th>Customer Name</th>
+                <th>Room</th>
+                <th>Payment</th>
                 <th>Duration</th>
                 <th>Actions</th>
             </tr>
@@ -33,24 +34,25 @@ else
         <tbody>
             @foreach (var booking in Bookings)
             {
-                <tr>
-                    <td>@booking.Id</td>
-                    <td>@booking.HotelId</td>
-                    <td>@booking.CustomerId</td>
-                    <td>@booking.DateCreated.Date.ToString("dd MMMM yyyy")</td>
-                    <td>@((booking.DateIn - booking.DateOut).TotalDays.ToString())</td>
-                    <td>
-                        <a href="/bookings/view/@booking.Id" class="btn btn-primary">
-                            <span class="oi oi-book"></span>
-                        </a>
-                        <a href="/bookings/edit/@booking.Id" class="btn btn-warning">
-                            <span class="oi oi-pencil"></span>
-                        </a>
-                        <button class="btn btn-danger" @onclick="@(() => Delete(booking.Id))">
-                            <span class="oi oi-delete"></span>
-                        </button>
-                    </td>
-                </tr>
+            <tr>
+                <td>@booking.Id</td>
+                <td>@booking.HotelId</td>
+                <td>@booking.CustomerId</td>
+                <td>@booking.RoomId</td>
+                <td>@booking.PaymentId</td>
+                <td>@booking.DurationId</td>
+                <td>
+                    <a href="/bookings/view/@booking.Id" class="btn btn-primary">
+                        <span class="oi oi-book"></span>
+                    </a>
+                    <a href="/bookings/edit/@booking.Id" class="btn btn-warning">
+                        <span class="oi oi-pencil"></span>
+                    </a>
+                    <button class="btn btn-danger" @onclick="@(() => Delete(booking.Id))">
+                        <span class="oi oi-delete"></span>
+                    </button>
+                </td>
+            </tr>
             }
         </tbody>
     </table>

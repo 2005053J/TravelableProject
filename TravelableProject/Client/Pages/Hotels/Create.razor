@@ -11,57 +11,6 @@
     <ValidationSummary />
 
 <div class="form-group">
-        <label>Room: </label>
-    <div>
-         <InputSelect @bind-Value="hotel.RoomId" class="form-control">
-             <option value="">--Select Room--</option>
-             @if (Rooms != null)
-             {
-                 foreach (var room in Rooms)
-                        {
-                            <option value="@room.Id">@room.Type</option>
-                        }
-             }
-         </InputSelect>
-         <ValidationMessage For="@(() => hotel.RoomId)" />
-    </div>
-</div>
-
-<div class="form-group">
-    <label>Duration: </label>
-    <div>
-        <InputSelect @bind-Value="hotel.DurationId" class="form-control">
-            <option value="">--Select Duration--</option>
-            @if (Durations != null)
-            {
-                foreach (var duration in Durations)
-                {
-                    <option value="@duration.Id">@duration.StayTime</option>
-                }
-            }
-        </InputSelect>
-        <ValidationMessage For="@(() => hotel.DurationId)" />
-    </div>
-</div>
-
-<div class="form-group">
-    <label>Payment: </label>
-    <div>
-        <InputSelect @bind-Value="hotel.PaymentId" class="form-control">
-            <option value="">--Select Payment--</option>
-            @if (Payments != null)
-            {
-                foreach (var payment in Payments)
-                {
-                    <option value="@payment.Id">@payment.Method</option>
-                }
-            }
-        </InputSelect>
-        <ValidationMessage For="@(() => hotel.PaymentId)" />
-    </div>
-</div>
-
-<div class="form-group">
     <label>Hotel Name: </label>
     <div>
         <InputText @bind-Value="@hotel.HotelName" class="form-control" />
