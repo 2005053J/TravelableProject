@@ -105,6 +105,25 @@ namespace TravelableProject.Server.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Hotels",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    HotelName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Country = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    HotelAddress = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DateCreated = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DateUpdated = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UpdatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Hotels", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Payments",
                 columns: table => new
                 {
@@ -265,53 +284,14 @@ namespace TravelableProject.Server.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Hotels",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    HotelName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Country = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    HotelAddress = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    DurationId = table.Column<int>(type: "int", nullable: false),
-                    RoomId = table.Column<int>(type: "int", nullable: false),
-                    PaymentId = table.Column<int>(type: "int", nullable: false),
-                    DateCreated = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    DateUpdated = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    UpdatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Hotels", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Hotels_Durations_DurationId",
-                        column: x => x.DurationId,
-                        principalTable: "Durations",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Hotels_Payments_PaymentId",
-                        column: x => x.PaymentId,
-                        principalTable: "Payments",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Hotels_Rooms_RoomId",
-                        column: x => x.RoomId,
-                        principalTable: "Rooms",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Bookings",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    DateIn = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    DateOut = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DurationId = table.Column<int>(type: "int", nullable: false),
+                    RoomId = table.Column<int>(type: "int", nullable: false),
+                    PaymentId = table.Column<int>(type: "int", nullable: false),
                     HotelId = table.Column<int>(type: "int", nullable: false),
                     CustomerId = table.Column<int>(type: "int", nullable: false),
                     DateCreated = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -329,9 +309,27 @@ namespace TravelableProject.Server.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
+                        name: "FK_Bookings_Durations_DurationId",
+                        column: x => x.DurationId,
+                        principalTable: "Durations",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
                         name: "FK_Bookings_Hotels_HotelId",
                         column: x => x.HotelId,
                         principalTable: "Hotels",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Bookings_Payments_PaymentId",
+                        column: x => x.PaymentId,
+                        principalTable: "Payments",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Bookings_Rooms_RoomId",
+                        column: x => x.RoomId,
+                        principalTable: "Rooms",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -341,39 +339,49 @@ namespace TravelableProject.Server.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "489e4d75-e0dc-4ac8-ab15-72834102fc89", "e0fb48bd-cec2-417c-83bb-622ff6f6af25", "Administrator", "ADMINISTRATOR" },
-                    { "dd4389e0-5019-466c-930e-8f60f453bc91", "a50d9de8-714c-406f-9aad-a5166d86b9b1", "User", "USER" }
+                    { "489e4d75-e0dc-4ac8-ab15-72834102fc89", "471c53d5-aff3-49a4-82a2-a255e455ba3f", "Administrator", "ADMINISTRATOR" },
+                    { "dd4389e0-5019-466c-930e-8f60f453bc91", "d46f7662-61f8-4d75-8cc0-602329888bda", "User", "USER" }
                 });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "18a0ae93-da75-43fd-ba01-7b4f95456194", 0, "976d1a49-0d72-4820-b758-27fc033f4c4b", "admin@localhost.com", false, "Admin", "User", false, null, "ADMIN@LOCALHOST.COM", "ADMIN", "AQAAAAEAACcQAAAAEI7DoM/A0KX+z69m29ybHa8mN7hHuhQJaeYfPb0Om3aw6oiIz1G1yDsnQw3HiZggng==", null, false, "2feeb5b0-78ac-4143-89d1-4114a7d4c1f4", false, "Admin" });
+                values: new object[] { "18a0ae93-da75-43fd-ba01-7b4f95456194", 0, "20c82c00-22aa-46ac-a302-e54d1db373b5", "admin@localhost.com", false, "Admin", "User", false, null, "ADMIN@LOCALHOST.COM", "ADMIN", "AQAAAAEAACcQAAAAEKW1pkOSfIO1Gywm2FWhPXGy4lPTwfcoDsJP8gEkQa7KJvJlhiHADOQ/Exkfje7k3w==", null, false, "44a0e252-0264-46b3-a894-5378a0da859a", false, "Admin" });
+
+            migrationBuilder.InsertData(
+                table: "Customers",
+                columns: new[] { "Id", "ContactNumber", "CreatedBy", "DateCreated", "DateUpdated", "EmailAddress", "GuestAddress", "GuestName", "UpdatedBy" },
+                values: new object[] { 1, "5555-555", "System", new DateTime(2022, 2, 9, 21, 8, 14, 646, DateTimeKind.Local).AddTicks(3416), new DateTime(2022, 2, 9, 21, 8, 14, 646, DateTimeKind.Local).AddTicks(3432), "hellosawadikap@palawan.com", "Thailand", "Tommy Rattanakosin", "System" });
 
             migrationBuilder.InsertData(
                 table: "Durations",
                 columns: new[] { "Id", "CreatedBy", "DateCreated", "DateUpdated", "StayTime", "UpdatedBy" },
                 values: new object[,]
                 {
-                    { 6, "System", new DateTime(2022, 2, 8, 22, 4, 42, 376, DateTimeKind.Local).AddTicks(3059), new DateTime(2022, 2, 8, 22, 4, 42, 376, DateTimeKind.Local).AddTicks(3063), "6 Days", "System" },
-                    { 5, "System", new DateTime(2022, 2, 8, 22, 4, 42, 376, DateTimeKind.Local).AddTicks(3050), new DateTime(2022, 2, 8, 22, 4, 42, 376, DateTimeKind.Local).AddTicks(3054), "5 Days", "System" },
-                    { 4, "System", new DateTime(2022, 2, 8, 22, 4, 42, 376, DateTimeKind.Local).AddTicks(3043), new DateTime(2022, 2, 8, 22, 4, 42, 376, DateTimeKind.Local).AddTicks(3046), "4 Days", "System" },
-                    { 7, "System", new DateTime(2022, 2, 8, 22, 4, 42, 376, DateTimeKind.Local).AddTicks(3067), new DateTime(2022, 2, 8, 22, 4, 42, 376, DateTimeKind.Local).AddTicks(3070), "1 Week", "System" },
-                    { 2, "System", new DateTime(2022, 2, 8, 22, 4, 42, 376, DateTimeKind.Local).AddTicks(3027), new DateTime(2022, 2, 8, 22, 4, 42, 376, DateTimeKind.Local).AddTicks(3030), "2 Days", "System" },
-                    { 1, "System", new DateTime(2022, 2, 8, 22, 4, 42, 376, DateTimeKind.Local).AddTicks(2979), new DateTime(2022, 2, 8, 22, 4, 42, 376, DateTimeKind.Local).AddTicks(3017), "1 Day", "System" },
-                    { 3, "System", new DateTime(2022, 2, 8, 22, 4, 42, 376, DateTimeKind.Local).AddTicks(3036), new DateTime(2022, 2, 8, 22, 4, 42, 376, DateTimeKind.Local).AddTicks(3039), "3 Days", "System" }
+                    { 6, "System", new DateTime(2022, 2, 9, 21, 8, 14, 634, DateTimeKind.Local).AddTicks(1553), new DateTime(2022, 2, 9, 21, 8, 14, 634, DateTimeKind.Local).AddTicks(1554), "6 Days", "System" },
+                    { 5, "System", new DateTime(2022, 2, 9, 21, 8, 14, 634, DateTimeKind.Local).AddTicks(1550), new DateTime(2022, 2, 9, 21, 8, 14, 634, DateTimeKind.Local).AddTicks(1551), "5 Days", "System" },
+                    { 4, "System", new DateTime(2022, 2, 9, 21, 8, 14, 634, DateTimeKind.Local).AddTicks(1548), new DateTime(2022, 2, 9, 21, 8, 14, 634, DateTimeKind.Local).AddTicks(1549), "4 Days", "System" },
+                    { 7, "System", new DateTime(2022, 2, 9, 21, 8, 14, 634, DateTimeKind.Local).AddTicks(1556), new DateTime(2022, 2, 9, 21, 8, 14, 634, DateTimeKind.Local).AddTicks(1557), "1 Week", "System" },
+                    { 2, "System", new DateTime(2022, 2, 9, 21, 8, 14, 634, DateTimeKind.Local).AddTicks(1543), new DateTime(2022, 2, 9, 21, 8, 14, 634, DateTimeKind.Local).AddTicks(1544), "2 Days", "System" },
+                    { 1, "System", new DateTime(2022, 2, 9, 21, 8, 14, 634, DateTimeKind.Local).AddTicks(1533), new DateTime(2022, 2, 9, 21, 8, 14, 634, DateTimeKind.Local).AddTicks(1539), "1 Day", "System" },
+                    { 3, "System", new DateTime(2022, 2, 9, 21, 8, 14, 634, DateTimeKind.Local).AddTicks(1546), new DateTime(2022, 2, 9, 21, 8, 14, 634, DateTimeKind.Local).AddTicks(1547), "3 Days", "System" }
                 });
+
+            migrationBuilder.InsertData(
+                table: "Hotels",
+                columns: new[] { "Id", "Country", "CreatedBy", "DateCreated", "DateUpdated", "HotelAddress", "HotelName", "UpdatedBy" },
+                values: new object[] { 1, "Indonesia", "System", new DateTime(2022, 2, 9, 21, 8, 14, 645, DateTimeKind.Local).AddTicks(9077), new DateTime(2022, 2, 9, 21, 8, 14, 645, DateTimeKind.Local).AddTicks(9085), "kunkun551indo", "HasanHotel", "System" });
 
             migrationBuilder.InsertData(
                 table: "Payments",
                 columns: new[] { "Id", "CreatedBy", "DateCreated", "DateUpdated", "Method", "UpdatedBy" },
                 values: new object[,]
                 {
-                    { 1, "System", new DateTime(2022, 2, 8, 22, 4, 42, 374, DateTimeKind.Local).AddTicks(8222), new DateTime(2022, 2, 8, 22, 4, 42, 374, DateTimeKind.Local).AddTicks(8261), "Credit Card", "System" },
-                    { 2, "System", new DateTime(2022, 2, 8, 22, 4, 42, 374, DateTimeKind.Local).AddTicks(8271), new DateTime(2022, 2, 8, 22, 4, 42, 374, DateTimeKind.Local).AddTicks(8274), "Cash", "System" },
-                    { 3, "System", new DateTime(2022, 2, 8, 22, 4, 42, 374, DateTimeKind.Local).AddTicks(8277), new DateTime(2022, 2, 8, 22, 4, 42, 374, DateTimeKind.Local).AddTicks(8280), "Personal Check", "System" },
-                    { 4, "System", new DateTime(2022, 2, 8, 22, 4, 42, 374, DateTimeKind.Local).AddTicks(8283), new DateTime(2022, 2, 8, 22, 4, 42, 374, DateTimeKind.Local).AddTicks(8285), "Direct Billing", "System" },
-                    { 5, "System", new DateTime(2022, 2, 8, 22, 4, 42, 374, DateTimeKind.Local).AddTicks(8288), new DateTime(2022, 2, 8, 22, 4, 42, 374, DateTimeKind.Local).AddTicks(8291), "Bank Transfer", "System" }
+                    { 1, "System", new DateTime(2022, 2, 9, 21, 8, 14, 633, DateTimeKind.Local).AddTicks(6435), new DateTime(2022, 2, 9, 21, 8, 14, 633, DateTimeKind.Local).AddTicks(6449), "Credit Card", "System" },
+                    { 2, "System", new DateTime(2022, 2, 9, 21, 8, 14, 633, DateTimeKind.Local).AddTicks(6453), new DateTime(2022, 2, 9, 21, 8, 14, 633, DateTimeKind.Local).AddTicks(6454), "Cash", "System" },
+                    { 3, "System", new DateTime(2022, 2, 9, 21, 8, 14, 633, DateTimeKind.Local).AddTicks(6456), new DateTime(2022, 2, 9, 21, 8, 14, 633, DateTimeKind.Local).AddTicks(6457), "Personal Check", "System" },
+                    { 4, "System", new DateTime(2022, 2, 9, 21, 8, 14, 633, DateTimeKind.Local).AddTicks(6459), new DateTime(2022, 2, 9, 21, 8, 14, 633, DateTimeKind.Local).AddTicks(6460), "Direct Billing", "System" },
+                    { 5, "System", new DateTime(2022, 2, 9, 21, 8, 14, 633, DateTimeKind.Local).AddTicks(6461), new DateTime(2022, 2, 9, 21, 8, 14, 633, DateTimeKind.Local).AddTicks(6462), "Bank Transfer", "System" }
                 });
 
             migrationBuilder.InsertData(
@@ -381,17 +389,22 @@ namespace TravelableProject.Server.Migrations
                 columns: new[] { "Id", "CreatedBy", "DateCreated", "DateUpdated", "Type", "UpdatedBy" },
                 values: new object[,]
                 {
-                    { 4, "System", new DateTime(2022, 2, 8, 22, 4, 42, 369, DateTimeKind.Local).AddTicks(9643), new DateTime(2022, 2, 8, 22, 4, 42, 369, DateTimeKind.Local).AddTicks(9646), "King", "System" },
-                    { 1, "System", new DateTime(2022, 2, 8, 22, 4, 42, 367, DateTimeKind.Local).AddTicks(7238), new DateTime(2022, 2, 8, 22, 4, 42, 369, DateTimeKind.Local).AddTicks(7052), "Single", "System" },
-                    { 2, "System", new DateTime(2022, 2, 8, 22, 4, 42, 369, DateTimeKind.Local).AddTicks(9620), new DateTime(2022, 2, 8, 22, 4, 42, 369, DateTimeKind.Local).AddTicks(9631), "Double", "System" },
-                    { 3, "System", new DateTime(2022, 2, 8, 22, 4, 42, 369, DateTimeKind.Local).AddTicks(9636), new DateTime(2022, 2, 8, 22, 4, 42, 369, DateTimeKind.Local).AddTicks(9639), "Queen", "System" },
-                    { 5, "System", new DateTime(2022, 2, 8, 22, 4, 42, 369, DateTimeKind.Local).AddTicks(9650), new DateTime(2022, 2, 8, 22, 4, 42, 369, DateTimeKind.Local).AddTicks(9652), "Smoking", "System" }
+                    { 4, "System", new DateTime(2022, 2, 9, 21, 8, 14, 632, DateTimeKind.Local).AddTicks(779), new DateTime(2022, 2, 9, 21, 8, 14, 632, DateTimeKind.Local).AddTicks(782), "King", "System" },
+                    { 1, "System", new DateTime(2022, 2, 9, 21, 8, 14, 630, DateTimeKind.Local).AddTicks(6955), new DateTime(2022, 2, 9, 21, 8, 14, 631, DateTimeKind.Local).AddTicks(9176), "Single", "System" },
+                    { 2, "System", new DateTime(2022, 2, 9, 21, 8, 14, 632, DateTimeKind.Local).AddTicks(761), new DateTime(2022, 2, 9, 21, 8, 14, 632, DateTimeKind.Local).AddTicks(769), "Double", "System" },
+                    { 3, "System", new DateTime(2022, 2, 9, 21, 8, 14, 632, DateTimeKind.Local).AddTicks(773), new DateTime(2022, 2, 9, 21, 8, 14, 632, DateTimeKind.Local).AddTicks(776), "Queen", "System" },
+                    { 5, "System", new DateTime(2022, 2, 9, 21, 8, 14, 632, DateTimeKind.Local).AddTicks(786), new DateTime(2022, 2, 9, 21, 8, 14, 632, DateTimeKind.Local).AddTicks(789), "Smoking", "System" }
                 });
 
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",
                 columns: new[] { "RoleId", "UserId" },
                 values: new object[] { "489e4d75-e0dc-4ac8-ab15-72834102fc89", "18a0ae93-da75-43fd-ba01-7b4f95456194" });
+
+            migrationBuilder.InsertData(
+                table: "Bookings",
+                columns: new[] { "Id", "CreatedBy", "CustomerId", "DateCreated", "DateUpdated", "DurationId", "HotelId", "PaymentId", "RoomId", "UpdatedBy" },
+                values: new object[] { 1, "System", 1, new DateTime(2022, 2, 9, 21, 8, 14, 645, DateTimeKind.Local).AddTicks(5733), new DateTime(2022, 2, 9, 21, 8, 14, 645, DateTimeKind.Local).AddTicks(5754), 1, 1, 1, 1, "System" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -438,9 +451,24 @@ namespace TravelableProject.Server.Migrations
                 column: "CustomerId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Bookings_DurationId",
+                table: "Bookings",
+                column: "DurationId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Bookings_HotelId",
                 table: "Bookings",
                 column: "HotelId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Bookings_PaymentId",
+                table: "Bookings",
+                column: "PaymentId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Bookings_RoomId",
+                table: "Bookings",
+                column: "RoomId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_DeviceCodes_DeviceCode",
@@ -452,21 +480,6 @@ namespace TravelableProject.Server.Migrations
                 name: "IX_DeviceCodes_Expiration",
                 table: "DeviceCodes",
                 column: "Expiration");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Hotels_DurationId",
-                table: "Hotels",
-                column: "DurationId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Hotels_PaymentId",
-                table: "Hotels",
-                column: "PaymentId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Hotels_RoomId",
-                table: "Hotels",
-                column: "RoomId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_PersistedGrants_Expiration",
@@ -520,10 +533,10 @@ namespace TravelableProject.Server.Migrations
                 name: "Customers");
 
             migrationBuilder.DropTable(
-                name: "Hotels");
+                name: "Durations");
 
             migrationBuilder.DropTable(
-                name: "Durations");
+                name: "Hotels");
 
             migrationBuilder.DropTable(
                 name: "Payments");

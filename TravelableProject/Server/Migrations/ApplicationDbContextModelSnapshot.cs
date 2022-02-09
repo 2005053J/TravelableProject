@@ -152,14 +152,14 @@ namespace TravelableProject.Server.Migrations
                         new
                         {
                             Id = "489e4d75-e0dc-4ac8-ab15-72834102fc89",
-                            ConcurrencyStamp = "71139350-96e3-4530-b218-198986c31add",
+                            ConcurrencyStamp = "471c53d5-aff3-49a4-82a2-a255e455ba3f",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
                             Id = "dd4389e0-5019-466c-930e-8f60f453bc91",
-                            ConcurrencyStamp = "b3854ffa-2b9c-4bd6-ae60-4bd682699b7c",
+                            ConcurrencyStamp = "d46f7662-61f8-4d75-8cc0-602329888bda",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -355,7 +355,7 @@ namespace TravelableProject.Server.Migrations
                         {
                             Id = "18a0ae93-da75-43fd-ba01-7b4f95456194",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "822c4b19-e248-4924-ae87-ee66b2a047fa",
+                            ConcurrencyStamp = "20c82c00-22aa-46ac-a302-e54d1db373b5",
                             Email = "admin@localhost.com",
                             EmailConfirmed = false,
                             FirstName = "Admin",
@@ -363,9 +363,9 @@ namespace TravelableProject.Server.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@LOCALHOST.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEJjFDZ8J+I9c21aXoV7typkRelBv6aGZUkHSHDdbVXItVCX3hVGyoGY4ZrcrLfg5dg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEKW1pkOSfIO1Gywm2FWhPXGy4lPTwfcoDsJP8gEkQa7KJvJlhiHADOQ/Exkfje7k3w==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "d5969ce2-ec1d-4d24-b758-35024de4f441",
+                            SecurityStamp = "44a0e252-0264-46b3-a894-5378a0da859a",
                             TwoFactorEnabled = false,
                             UserName = "Admin"
                         });
@@ -418,6 +418,21 @@ namespace TravelableProject.Server.Migrations
                     b.HasIndex("RoomId");
 
                     b.ToTable("Bookings");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedBy = "System",
+                            CustomerId = 1,
+                            DateCreated = new DateTime(2022, 2, 9, 21, 8, 14, 645, DateTimeKind.Local).AddTicks(5733),
+                            DateUpdated = new DateTime(2022, 2, 9, 21, 8, 14, 645, DateTimeKind.Local).AddTicks(5754),
+                            DurationId = 1,
+                            HotelId = 1,
+                            PaymentId = 1,
+                            RoomId = 1,
+                            UpdatedBy = "System"
+                        });
                 });
 
             modelBuilder.Entity("TravelableProject.Shared.Domain.Customer", b =>
@@ -454,6 +469,20 @@ namespace TravelableProject.Server.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Customers");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            ContactNumber = "5555-555",
+                            CreatedBy = "System",
+                            DateCreated = new DateTime(2022, 2, 9, 21, 8, 14, 646, DateTimeKind.Local).AddTicks(3416),
+                            DateUpdated = new DateTime(2022, 2, 9, 21, 8, 14, 646, DateTimeKind.Local).AddTicks(3432),
+                            EmailAddress = "hellosawadikap@palawan.com",
+                            GuestAddress = "Thailand",
+                            GuestName = "Tommy Rattanakosin",
+                            UpdatedBy = "System"
+                        });
                 });
 
             modelBuilder.Entity("TravelableProject.Shared.Domain.Duration", b =>
@@ -487,8 +516,8 @@ namespace TravelableProject.Server.Migrations
                         {
                             Id = 1,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2022, 2, 9, 7, 35, 3, 585, DateTimeKind.Local).AddTicks(3012),
-                            DateUpdated = new DateTime(2022, 2, 9, 7, 35, 3, 585, DateTimeKind.Local).AddTicks(3019),
+                            DateCreated = new DateTime(2022, 2, 9, 21, 8, 14, 634, DateTimeKind.Local).AddTicks(1533),
+                            DateUpdated = new DateTime(2022, 2, 9, 21, 8, 14, 634, DateTimeKind.Local).AddTicks(1539),
                             StayTime = "1 Day",
                             UpdatedBy = "System"
                         },
@@ -496,8 +525,8 @@ namespace TravelableProject.Server.Migrations
                         {
                             Id = 2,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2022, 2, 9, 7, 35, 3, 585, DateTimeKind.Local).AddTicks(3022),
-                            DateUpdated = new DateTime(2022, 2, 9, 7, 35, 3, 585, DateTimeKind.Local).AddTicks(3024),
+                            DateCreated = new DateTime(2022, 2, 9, 21, 8, 14, 634, DateTimeKind.Local).AddTicks(1543),
+                            DateUpdated = new DateTime(2022, 2, 9, 21, 8, 14, 634, DateTimeKind.Local).AddTicks(1544),
                             StayTime = "2 Days",
                             UpdatedBy = "System"
                         },
@@ -505,8 +534,8 @@ namespace TravelableProject.Server.Migrations
                         {
                             Id = 3,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2022, 2, 9, 7, 35, 3, 585, DateTimeKind.Local).AddTicks(3025),
-                            DateUpdated = new DateTime(2022, 2, 9, 7, 35, 3, 585, DateTimeKind.Local).AddTicks(3026),
+                            DateCreated = new DateTime(2022, 2, 9, 21, 8, 14, 634, DateTimeKind.Local).AddTicks(1546),
+                            DateUpdated = new DateTime(2022, 2, 9, 21, 8, 14, 634, DateTimeKind.Local).AddTicks(1547),
                             StayTime = "3 Days",
                             UpdatedBy = "System"
                         },
@@ -514,8 +543,8 @@ namespace TravelableProject.Server.Migrations
                         {
                             Id = 4,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2022, 2, 9, 7, 35, 3, 585, DateTimeKind.Local).AddTicks(3028),
-                            DateUpdated = new DateTime(2022, 2, 9, 7, 35, 3, 585, DateTimeKind.Local).AddTicks(3029),
+                            DateCreated = new DateTime(2022, 2, 9, 21, 8, 14, 634, DateTimeKind.Local).AddTicks(1548),
+                            DateUpdated = new DateTime(2022, 2, 9, 21, 8, 14, 634, DateTimeKind.Local).AddTicks(1549),
                             StayTime = "4 Days",
                             UpdatedBy = "System"
                         },
@@ -523,8 +552,8 @@ namespace TravelableProject.Server.Migrations
                         {
                             Id = 5,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2022, 2, 9, 7, 35, 3, 585, DateTimeKind.Local).AddTicks(3030),
-                            DateUpdated = new DateTime(2022, 2, 9, 7, 35, 3, 585, DateTimeKind.Local).AddTicks(3031),
+                            DateCreated = new DateTime(2022, 2, 9, 21, 8, 14, 634, DateTimeKind.Local).AddTicks(1550),
+                            DateUpdated = new DateTime(2022, 2, 9, 21, 8, 14, 634, DateTimeKind.Local).AddTicks(1551),
                             StayTime = "5 Days",
                             UpdatedBy = "System"
                         },
@@ -532,8 +561,8 @@ namespace TravelableProject.Server.Migrations
                         {
                             Id = 6,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2022, 2, 9, 7, 35, 3, 585, DateTimeKind.Local).AddTicks(3033),
-                            DateUpdated = new DateTime(2022, 2, 9, 7, 35, 3, 585, DateTimeKind.Local).AddTicks(3034),
+                            DateCreated = new DateTime(2022, 2, 9, 21, 8, 14, 634, DateTimeKind.Local).AddTicks(1553),
+                            DateUpdated = new DateTime(2022, 2, 9, 21, 8, 14, 634, DateTimeKind.Local).AddTicks(1554),
                             StayTime = "6 Days",
                             UpdatedBy = "System"
                         },
@@ -541,8 +570,8 @@ namespace TravelableProject.Server.Migrations
                         {
                             Id = 7,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2022, 2, 9, 7, 35, 3, 585, DateTimeKind.Local).AddTicks(3036),
-                            DateUpdated = new DateTime(2022, 2, 9, 7, 35, 3, 585, DateTimeKind.Local).AddTicks(3037),
+                            DateCreated = new DateTime(2022, 2, 9, 21, 8, 14, 634, DateTimeKind.Local).AddTicks(1556),
+                            DateUpdated = new DateTime(2022, 2, 9, 21, 8, 14, 634, DateTimeKind.Local).AddTicks(1557),
                             StayTime = "1 Week",
                             UpdatedBy = "System"
                         });
@@ -579,6 +608,19 @@ namespace TravelableProject.Server.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Hotels");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Country = "Indonesia",
+                            CreatedBy = "System",
+                            DateCreated = new DateTime(2022, 2, 9, 21, 8, 14, 645, DateTimeKind.Local).AddTicks(9077),
+                            DateUpdated = new DateTime(2022, 2, 9, 21, 8, 14, 645, DateTimeKind.Local).AddTicks(9085),
+                            HotelAddress = "kunkun551indo",
+                            HotelName = "HasanHotel",
+                            UpdatedBy = "System"
+                        });
                 });
 
             modelBuilder.Entity("TravelableProject.Shared.Domain.Payment", b =>
@@ -612,8 +654,8 @@ namespace TravelableProject.Server.Migrations
                         {
                             Id = 1,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2022, 2, 9, 7, 35, 3, 584, DateTimeKind.Local).AddTicks(6906),
-                            DateUpdated = new DateTime(2022, 2, 9, 7, 35, 3, 584, DateTimeKind.Local).AddTicks(6923),
+                            DateCreated = new DateTime(2022, 2, 9, 21, 8, 14, 633, DateTimeKind.Local).AddTicks(6435),
+                            DateUpdated = new DateTime(2022, 2, 9, 21, 8, 14, 633, DateTimeKind.Local).AddTicks(6449),
                             Method = "Credit Card",
                             UpdatedBy = "System"
                         },
@@ -621,8 +663,8 @@ namespace TravelableProject.Server.Migrations
                         {
                             Id = 2,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2022, 2, 9, 7, 35, 3, 584, DateTimeKind.Local).AddTicks(6927),
-                            DateUpdated = new DateTime(2022, 2, 9, 7, 35, 3, 584, DateTimeKind.Local).AddTicks(6928),
+                            DateCreated = new DateTime(2022, 2, 9, 21, 8, 14, 633, DateTimeKind.Local).AddTicks(6453),
+                            DateUpdated = new DateTime(2022, 2, 9, 21, 8, 14, 633, DateTimeKind.Local).AddTicks(6454),
                             Method = "Cash",
                             UpdatedBy = "System"
                         },
@@ -630,8 +672,8 @@ namespace TravelableProject.Server.Migrations
                         {
                             Id = 3,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2022, 2, 9, 7, 35, 3, 584, DateTimeKind.Local).AddTicks(6929),
-                            DateUpdated = new DateTime(2022, 2, 9, 7, 35, 3, 584, DateTimeKind.Local).AddTicks(6930),
+                            DateCreated = new DateTime(2022, 2, 9, 21, 8, 14, 633, DateTimeKind.Local).AddTicks(6456),
+                            DateUpdated = new DateTime(2022, 2, 9, 21, 8, 14, 633, DateTimeKind.Local).AddTicks(6457),
                             Method = "Personal Check",
                             UpdatedBy = "System"
                         },
@@ -639,8 +681,8 @@ namespace TravelableProject.Server.Migrations
                         {
                             Id = 4,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2022, 2, 9, 7, 35, 3, 584, DateTimeKind.Local).AddTicks(6932),
-                            DateUpdated = new DateTime(2022, 2, 9, 7, 35, 3, 584, DateTimeKind.Local).AddTicks(6933),
+                            DateCreated = new DateTime(2022, 2, 9, 21, 8, 14, 633, DateTimeKind.Local).AddTicks(6459),
+                            DateUpdated = new DateTime(2022, 2, 9, 21, 8, 14, 633, DateTimeKind.Local).AddTicks(6460),
                             Method = "Direct Billing",
                             UpdatedBy = "System"
                         },
@@ -648,8 +690,8 @@ namespace TravelableProject.Server.Migrations
                         {
                             Id = 5,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2022, 2, 9, 7, 35, 3, 584, DateTimeKind.Local).AddTicks(6934),
-                            DateUpdated = new DateTime(2022, 2, 9, 7, 35, 3, 584, DateTimeKind.Local).AddTicks(6935),
+                            DateCreated = new DateTime(2022, 2, 9, 21, 8, 14, 633, DateTimeKind.Local).AddTicks(6461),
+                            DateUpdated = new DateTime(2022, 2, 9, 21, 8, 14, 633, DateTimeKind.Local).AddTicks(6462),
                             Method = "Bank Transfer",
                             UpdatedBy = "System"
                         });
@@ -686,8 +728,8 @@ namespace TravelableProject.Server.Migrations
                         {
                             Id = 1,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2022, 2, 9, 7, 35, 3, 581, DateTimeKind.Local).AddTicks(6614),
-                            DateUpdated = new DateTime(2022, 2, 9, 7, 35, 3, 582, DateTimeKind.Local).AddTicks(7566),
+                            DateCreated = new DateTime(2022, 2, 9, 21, 8, 14, 630, DateTimeKind.Local).AddTicks(6955),
+                            DateUpdated = new DateTime(2022, 2, 9, 21, 8, 14, 631, DateTimeKind.Local).AddTicks(9176),
                             Type = "Single",
                             UpdatedBy = "System"
                         },
@@ -695,8 +737,8 @@ namespace TravelableProject.Server.Migrations
                         {
                             Id = 2,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2022, 2, 9, 7, 35, 3, 582, DateTimeKind.Local).AddTicks(9004),
-                            DateUpdated = new DateTime(2022, 2, 9, 7, 35, 3, 582, DateTimeKind.Local).AddTicks(9010),
+                            DateCreated = new DateTime(2022, 2, 9, 21, 8, 14, 632, DateTimeKind.Local).AddTicks(761),
+                            DateUpdated = new DateTime(2022, 2, 9, 21, 8, 14, 632, DateTimeKind.Local).AddTicks(769),
                             Type = "Double",
                             UpdatedBy = "System"
                         },
@@ -704,8 +746,8 @@ namespace TravelableProject.Server.Migrations
                         {
                             Id = 3,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2022, 2, 9, 7, 35, 3, 582, DateTimeKind.Local).AddTicks(9013),
-                            DateUpdated = new DateTime(2022, 2, 9, 7, 35, 3, 582, DateTimeKind.Local).AddTicks(9014),
+                            DateCreated = new DateTime(2022, 2, 9, 21, 8, 14, 632, DateTimeKind.Local).AddTicks(773),
+                            DateUpdated = new DateTime(2022, 2, 9, 21, 8, 14, 632, DateTimeKind.Local).AddTicks(776),
                             Type = "Queen",
                             UpdatedBy = "System"
                         },
@@ -713,8 +755,8 @@ namespace TravelableProject.Server.Migrations
                         {
                             Id = 4,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2022, 2, 9, 7, 35, 3, 582, DateTimeKind.Local).AddTicks(9015),
-                            DateUpdated = new DateTime(2022, 2, 9, 7, 35, 3, 582, DateTimeKind.Local).AddTicks(9016),
+                            DateCreated = new DateTime(2022, 2, 9, 21, 8, 14, 632, DateTimeKind.Local).AddTicks(779),
+                            DateUpdated = new DateTime(2022, 2, 9, 21, 8, 14, 632, DateTimeKind.Local).AddTicks(782),
                             Type = "King",
                             UpdatedBy = "System"
                         },
@@ -722,8 +764,8 @@ namespace TravelableProject.Server.Migrations
                         {
                             Id = 5,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2022, 2, 9, 7, 35, 3, 582, DateTimeKind.Local).AddTicks(9018),
-                            DateUpdated = new DateTime(2022, 2, 9, 7, 35, 3, 582, DateTimeKind.Local).AddTicks(9019),
+                            DateCreated = new DateTime(2022, 2, 9, 21, 8, 14, 632, DateTimeKind.Local).AddTicks(786),
+                            DateUpdated = new DateTime(2022, 2, 9, 21, 8, 14, 632, DateTimeKind.Local).AddTicks(789),
                             Type = "Smoking",
                             UpdatedBy = "System"
                         });
